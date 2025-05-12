@@ -3,93 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Control | Учёт питания</title>
+    <title>Foody | Учет питания</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter :wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
 </head>
 <body>
-    <div class="container">
-        <header>
+    <div class="app-container">
+        <header class="app-header">
             <div class="header-content">
-                <h1>
-                    <span class="icon">🥗</span>
-                    <span>Food Control</span>
-                </h1>
-                <button id="theme-toggle" aria-label="Переключить тему">
-                    <span class="theme-icon">🌓</span>
-                </button>
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <h1>Foody</h1>
+                </div>
+
+                <!-- Ссылки для переключения тем -->
+                <div class="theme-switcher-group">
+                    <a href="#change" class="theme-link day">
+                        <i class="fas fa-sun"></i> Светлая тема
+                    </a>
+                    <a href="#change" class="theme-link night">
+                        <i class="fas fa-moon"></i> Темная тема
+                    </a>
+                </div>
             </div>
         </header>
 
-        <main>
-            <section class="card add-expense">
-                <h2>Добавить расход</h2>
-                <form id="expense-form">
-                    <div class="input-group">
-                        <label for="amount">Сумма</label>
-                        <input type="number" id="amount" placeholder="0.00" step="0.01" required>
+        <main class="app-main">
+            <section class="card expense-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-plus-circle"></i> Новый расход</h2>
+                </div>
+                <form id="expense-form" class="expense-form">
+                    <div class="form-group">
+                        <label for="amount"><i class="fas fa-ruble-sign"></i> Сумма</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="amount" placeholder="0.00" step="0.01" required>
+                            <span class="currency">₽</span>
+                        </div>
                     </div>
-                    
-                    <div class="input-group">
-                        <label for="category">Категория</label>
-                        <select id="category" required>
-                            <option value="">Выберите категорию</option>
-                            <option value="Продукты">Продукты</option>
-                            <option value="Рестораны">Рестораны</option>
-                            <option value="Кафе">Кафе</option>
-                            <option value="Доставка">Доставка</option>
-                        </select>
+                    <div class="form-group">
+                        <label for="category"><i class="fas fa-tag"></i> Категория</label>
+                        <div class="custom-select">
+                            <select id="category" required>
+                                <option value="">Выберите категорию</option>
+                                <option value="Продукты">Продукты</option>
+                                <option value="Рестораны">Рестораны</option>
+                                <option value="Кафе">Кафе</option>
+                                <option value="Доставка">Доставка</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
-                    
-                    <div class="input-group">
-                        <label for="date">Дата</label>
+                    <div class="form-group">
+                        <label for="date"><i class="fas fa-calendar-day"></i> Дата</label>
                         <input type="date" id="date" required>
                     </div>
-                    
-                    <div class="input-group">
-                        <label for="comment">Комментарий</label>
-                        <textarea id="comment" placeholder="Например: Ужин в кафе"></textarea>
+                    <div class="form-group">
+                        <label for="comment"><i class="fas fa-comment"></i> Комментарий</label>
+                        <textarea id="comment" placeholder="Опишите расход..."></textarea>
                     </div>
-                    
-                    <button type="submit" class="primary-btn">
-                        <span>Добавить расход</span>
-                        <span>＋</span>
+                    <button type="submit" class="btn primary">
+                        <i class="fas fa-paper-plane"></i> Добавить
                     </button>
                 </form>
             </section>
 
-            <section class="card stats">
-                <h2>Ваша статистика</h2>
+            <section class="card stats-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-pie"></i> Статистика</h2>
+                </div>
                 <div class="filters">
-                    <div class="input-group">
-                        <label for="start-date">От</label>
+                    <div class="filter-group">
+                        <label for="start-date">С</label>
                         <input type="date" id="start-date">
                     </div>
-                    <div class="input-group">
-                        <label for="end-date">До</label>
+                    <div class="filter-group">
+                        <label for="end-date">По</label>
                         <input type="date" id="end-date">
                     </div>
-                    <button onclick="loadChart()" class="secondary-btn">Применить</button>
+                    <button onclick="loadChart()" class="btn secondary">
+                        <i class="fas fa-sync-alt"></i> Обновить
+                    </button>
                 </div>
                 <div class="chart-container">
-                    <img id="chart" class="chart">
+                    <div class="chart-placeholder" id="chart-placeholder">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>Данные для графика</p>
+                    </div>
+                    <img id="chart" class="chart" style="display: none;">
                 </div>
             </section>
 
-            <section class="card budget">
-                <h2>Бюджет</h2>
+            <section class="card budget-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-wallet"></i> Бюджет</h2>
+                </div>
                 <div class="budget-controls">
-                    <div class="input-group">
+                    <div class="form-group">
                         <label for="budget-limit">Месячный лимит</label>
-                        <input type="number" id="budget-limit" placeholder="Введите сумму">
+                        <div class="input-with-icon">
+                            <input type="number" id="budget-limit" placeholder="5000">
+                            <span class="currency">₽</span>
+                        </div>
                     </div>
-                    <button onclick="setBudget()" class="primary-btn">Сохранить</button>
+                    <button onclick="setBudget()" class="btn primary">
+                        <i class="fas fa-save"></i> Сохранить
+                    </button>
                     <div id="budget-status" class="status-message"></div>
                 </div>
             </section>
         </main>
     </div>
 
+    <!-- Подключение jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js "></script>
+    <!-- Ваш JS -->
     <script src="script.js"></script>
 </body>
 </html>
