@@ -6,7 +6,7 @@ function initDate() {
     dateInput.max = today;
 }
 
-// Обработчик формы добавления расхода
+// Формы добавления расхода
 function setupExpenseForm() {
     const form = document.getElementById('expense-form');
     form.addEventListener('submit', async (e) => {
@@ -36,7 +36,7 @@ function setupExpenseForm() {
     });
 }
 
-// Загрузка графика
+// График
 async function loadChart() {
     const startDate = document.getElementById('start-date').value;
     const endDate = document.getElementById('end-date').value;
@@ -51,7 +51,7 @@ async function loadChart() {
     }
 }
 
-// Установка бюджета
+// Бюджет
 async function setBudget() {
     const limitInput = document.getElementById('budget-limit');
     const limit = parseFloat(limitInput.value);
@@ -70,7 +70,7 @@ async function setBudget() {
     }
 }
 
-// Показать уведомление
+// Уведомление
 function showNotification(message, type) {
     const statusElement = document.getElementById('budget-status');
     statusElement.textContent = message;
@@ -80,24 +80,23 @@ function showNotification(message, type) {
     }, 3000);
 }
 
-// Инициализация темы с использованием jQuery
+// Инициализация темы с jQuery
 $(document).ready(function () {
-    // Присваиваем классы нашим элементам
     $('[href="#change"]').addClass('hover_1');
     $('.hover_1:eq(0)').addClass('activ_1');
 
-    // Показываем дневной интерфейс по умолчанию
+    // Дневной интерфейс по умолчанию
     $('.day').fadeTo(1, 1);
     $('.night').fadeTo(1, 0);
 
-    // Функция активации выбранной темы
+    // Активации выбранной темы
     function activ_1() {
         $('.hover_1').removeClass('activ_1');
     }
 
     var number_1 = 0;
 
-    // При клике на тему
+    // Клац на тему
     $(".hover_1").click(function () {
         number_1 = $(".hover_1").index(this);
         activ_1();
@@ -120,7 +119,7 @@ $(document).ready(function () {
         return false;
     });
 
-    // Автоматически применяем сохранённую тему
+    // Автоприменение сохранённой темы
     const savedTheme = localStorage.getItem('theme') || 'light';
     if (savedTheme === 'dark') {
         $('.hover_1').removeClass('activ_1');

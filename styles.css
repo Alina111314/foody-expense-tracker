@@ -1,5 +1,5 @@
 :root {
-    /* Цветовая палитра */
+    /* Цветики */
     --bg-primary: #f8faf9;
     --bg-secondary: #ffffff;
     --text-primary: #2d3a3a;
@@ -32,7 +32,7 @@
     --shadow: 0 4px 24px rgba(0, 20, 18, 0.2);
 }
 
-/* Базовые стили */
+/* Бейзик стайл */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -85,7 +85,7 @@ h2 {
     font-size: 1.8rem;
 }
 
-/* Переключатель темы */
+/* Клац клац темы */
 .theme-switcher-group {
     display: flex;
     gap: 1rem;
